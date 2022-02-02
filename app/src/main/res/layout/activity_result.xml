@@ -23,7 +23,7 @@
                 android:layout_weight="1" />
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/last_calcul_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -48,7 +48,7 @@
                 android:layout_weight="1" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/nb_success_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -73,7 +73,7 @@
                 android:layout_weight="1" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/nb_calcul_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

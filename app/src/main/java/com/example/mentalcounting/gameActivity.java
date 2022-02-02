@@ -32,9 +32,13 @@ public class gameActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         switch (id){
-            case R.id.previous_button_menu:
-                Intent intent = new Intent(this, ResultActivity.class);
-                startActivity(intent);
+            case R.id.result_menu_button:
+                Intent intentr = new Intent(this, ResultActivity.class);
+                startActivity(intentr);
+                break;
+            case R.id.home_menu_button:
+                Intent intenth = new Intent(this, MainActivity.class);
+                startActivity(intenth);
                 break;
         }
         return super.onOptionsItemSelected(item);
