@@ -1,3 +1,15 @@
 <resources>
-    <string name="app_name">MentalCounting</string>
+    <string name="app_name" translatable="false">MentalCounting</string>
+
+    <!-- Activity main -->
+    <string name="game">Game</string>
+    <string name="previous">Previous</string>
+
+    <!-- Game menu -->
+    <string name="home">Home</string>
+    <string name="results">Result</string>
+    <string name="clean">Clean</string>
+
+    <!-- Previous menu -->
+    <string name="previous_button">Previous</string>
 </resources>
