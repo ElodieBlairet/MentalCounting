@@ -2,7 +2,7 @@
 <resources>
 
     <!-- Activity main -->
-    <string name="game">Jeu</string>
+    <string name="games">game</string>
     <string name="previous">Précédent</string>
 
     <!-- Game menu -->
@@ -12,4 +12,16 @@
 
     <!-- Previous menu -->
     <string name="previous_button">Précédent</string>
+
+    <!-- Activity game -->
+    <string name="bravo">Bravo</string>
+    <string name="calcul">calcul : 6+3</string>
+    <string name="reponse">reponse : </string>
+    <string name="rate">Echec : 9</string>
+    <string name="valider">Valider</string>
+
+    <!-- Activity result -->
+    <string name="dernier_calcul">dernier calcul : 5+3=8</string>
+    <string name="reussites">89 reussites</string>
+    <string name="calculs">110 calculs</string>
 </resources>

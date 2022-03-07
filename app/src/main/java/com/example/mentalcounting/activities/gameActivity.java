@@ -1,4 +1,4 @@
-package com.example.mentalcounting;
+package com.example.mentalcounting.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,15 +8,25 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.EditText;
+
+import com.example.mentalcounting.R;
+
+import java.util.Random;
 
 public class gameActivity extends AppCompatActivity {
+    EditText text;
+    private int premier = 0;
+    private String operateur = null;
+    private int deuxieme = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-    }
 
+       text = findViewById(R.id.answer_text);
+    }
 
     //Ajoute game_menu à la page gameActivity
     @Override
@@ -40,9 +50,11 @@ public class gameActivity extends AppCompatActivity {
                 Intent intenth = new Intent(this, MainActivity.class);
                 startActivity(intenth);
                 break;
+            case R.id.submit_game_button:
+                String answer = text.getText().toString();
+                Double rep = Double.parseDouble(answer);
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
-
-
 }

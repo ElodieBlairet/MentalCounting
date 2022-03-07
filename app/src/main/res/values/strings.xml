@@ -2,7 +2,7 @@
     <string name="app_name" translatable="false">MentalCounting</string>
 
     <!-- Activity main -->
-    <string name="game">Game</string>
+    <string name="games">game</string>
     <string name="previous">Previous</string>
 
     <!-- Game menu -->
@@ -12,4 +12,17 @@
 
     <!-- Previous menu -->
     <string name="previous_button">Previous</string>
+
+    <!-- Activity game -->
+    <string name="bravo">Congrate</string>
+    <string name="calcul">Calculation : 6+3</string>
+    <string name="reponse">Answer : </string>
+    <string name="rate">Failure : 9</string>
+    <string name="valider">Validate</string>
+
+    <!-- Activity result -->
+    <string name="dernier_calcul">Last calculation : 5+3=8</string>
+    <string name="reussites">89% success</string>
+    <string name="calculs">110 calculation</string>
+
 </resources>
