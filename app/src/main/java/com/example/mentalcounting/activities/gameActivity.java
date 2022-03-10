@@ -10,7 +10,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.EditText;
 
+import com.example.mentalcounting.services.OperationService;
+import com.example.mentalcounting.services.VerificationCalcul;
+
+
 import com.example.mentalcounting.R;
+import com.example.mentalcounting.services.VerificationCalcul;
 
 import java.util.Random;
 
@@ -26,6 +31,15 @@ public class gameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game);
 
        text = findViewById(R.id.answer_text);
+
+        //Service de création d'une opération
+        OperationService ope = new OperationService();
+        boolean calcul = ope.Verification(premier, deuxieme, operateur);
+        if (calcul) {
+            premier = ope.getPremier();
+            deuxieme = ope.getDeuxieme();
+            operateur = ope.getOperateur();
+        }
     }
 
     //Ajoute game_menu à la page gameActivity
@@ -39,6 +53,9 @@ public class gameActivity extends AppCompatActivity {
     //Ouvre la page home et result
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        //Service de verification
+        VerificationCalcul verif = new VerificationCalcul();
+
         int id = item.getItemId();
 
         switch (id){
@@ -53,6 +70,7 @@ public class gameActivity extends AppCompatActivity {
             case R.id.submit_game_button:
                 String answer = text.getText().toString();
                 Double rep = Double.parseDouble(answer);
+                //boolean TF = verif.Verification();//Savoir si l'utilisateur a bon ou pas
                 break;
         }
         return super.onOptionsItemSelected(item);
