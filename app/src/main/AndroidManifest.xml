@@ -13,7 +13,7 @@
             android:name=".activities.ResultActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.gameActivity"
+            android:name=".activities.GameActivity"
             android:exported="false" />
         <activity
             android:name=".activities.MainActivity"

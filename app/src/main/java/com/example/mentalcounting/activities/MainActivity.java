@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     }
     //ouvre la page game
     private void opengameActivity(){
-        Intent intent = new Intent(this, gameActivity.class);
+        Intent intent = new Intent(this, GameActivity.class);
         startActivity(intent);
     }
 

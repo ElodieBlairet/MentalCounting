@@ -21,7 +21,8 @@ import com.example.mentalcounting.models.GetteurOperation;
 
 import com.example.mentalcounting.R;
 
-public class gameActivity extends AppCompatActivity {
+public class GameActivity extends AppCompatActivity {
+
     EditText text;//Ce que l'utilisateur entre
     TextView calculText;
     TextView incorrectText;
@@ -89,5 +90,19 @@ public class gameActivity extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    //Getteur pour affichage
+    public EditText getText() {
+        return text;
+    }
+    public TextView getCalculText() {
+        return calculText;
+    }
+    public TextView getIncorrectText() {
+        return incorrectText;
+    }
+    public TextView getCorrectText() {
+        return correctText;
     }
 }
