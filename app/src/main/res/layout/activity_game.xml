@@ -29,7 +29,8 @@
                     android:layout_height="wrap_content"
                     android:text="@string/calcul"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:visibility="visible" />
 
             </LinearLayout>
         </LinearLayout>
@@ -79,7 +80,8 @@
                     android:layout_height="wrap_content"
                     android:text="@string/bravo"
                     android:textColor="@color/green"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:visibility="invisible" />
 
             </LinearLayout>
         </LinearLayout>
@@ -102,7 +104,8 @@
                     android:layout_height="wrap_content"
                     android:text="@string/rate"
                     android:textColor="@color/red"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:visibility="invisible" />
 
             </LinearLayout>
 
@@ -120,12 +123,13 @@
                 android:gravity="center_horizontal|top"
                 android:orientation="horizontal">
 
-                <TextView
+                <Button
                     android:id="@+id/submit_game_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:backgroundTint="#77BAEF"
                     android:text="@string/valider"
-                    android:textColor="@color/black"
                     android:textSize="20sp" />
 
             </LinearLayout>

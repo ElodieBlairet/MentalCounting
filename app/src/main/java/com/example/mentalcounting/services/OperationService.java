@@ -11,9 +11,9 @@ public class OperationService {
     //Fonction pour les aléatoires
     public void Aleatoire(){
         Random random = new Random();
-        premier = random.nextInt();
-        deuxieme = random.nextInt();
-        int operator = random.nextInt(4);
+        premier = random.nextInt(21);//Chiffre comprit entre 0 et 20
+        deuxieme = random.nextInt(21);
+        int operator = random.nextInt(3);//Chiffre comprit entre 0 et 2
         Operation(operator);
     }
 
@@ -22,41 +22,23 @@ public class OperationService {
         switch (operator){
             case 0:
                 operateur = "+";
+                CorrectOpe();
                 break;
             case 1:
                 operateur = "-";
+                CorrectOpe();
                 break;
             case 2:
                 operateur = "*";
-                break;
-            case 3:
-                operateur = "/";
+                CorrectOpe();
                 break;
             default:
                 Aleatoire();
         }
-        Verification(premier, deuxieme, operateur);
     }
 
-    //Fonction qui vérifie si l'opération est possible
-    public boolean Verification(int premier, int deuxieme, String ope){
-        Aleatoire();
-        //division par 0
-        while (ope == "/") {
-            if (deuxieme == 0){
-                Aleatoire();
-            }
-        }
-
-        //résultat négatif
-        while (ope == "-"){
-            int res = premier - deuxieme;
-            if (res < 0){
-                Aleatoire();
-            }
-        }
-
-        return (true);
+    public boolean CorrectOpe(){
+        return true;
     }
 
     //Accesseurs
@@ -72,3 +54,4 @@ public class OperationService {
         return operateur;
     }
 }
+//On a 2 int et un opérateur String
