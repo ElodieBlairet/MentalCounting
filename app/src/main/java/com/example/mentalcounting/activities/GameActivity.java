@@ -31,6 +31,7 @@ public class GameActivity extends AppCompatActivity {
     private int premier = 0;
     private String operateur = null;
     private int deuxieme = 0;
+    GetteurOperation aff = new GetteurOperation();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +47,7 @@ public class GameActivity extends AppCompatActivity {
         OperationService ope = new OperationService();//Service de création d'une opération
         boolean calcul = ope.CorrectOpe();//L'opération est correcte : 2 int et un String
         if (calcul) {//Récupération des valeurs de l'opération car elle est correcte
-            GetteurOperation aff = new GetteurOperation();
+
             premier = aff.GetPrem();
             operateur = aff.GetOpe();
             deuxieme = aff.GetDeux();
