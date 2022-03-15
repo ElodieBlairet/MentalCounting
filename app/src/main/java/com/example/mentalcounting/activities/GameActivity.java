@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -40,7 +41,6 @@ public class GameActivity extends AppCompatActivity {
         calculText = findViewById(R.id.calcul_text);
         incorrectText = findViewById(R.id.false_text);
         correctText = findViewById(R.id.correct_text);
-        int visible = calculText.getVisibility();//on stocke la visibilité du calcul
 
         //On récupère les valeurs du calcul pour les afficher :
         OperationService ope = new OperationService();//Service de création d'une opération
@@ -57,14 +57,21 @@ public class GameActivity extends AppCompatActivity {
         Button submitButton = findViewById(R.id.submit_game_button);
         submitButton.setOnClickListener(view -> {
             try {
-                verif.Verification();
+                String value = text.getText().toString();
+                verif.Verification(aff, value);
+
+                // il faut récupérer le composant : c est pas l ID qui change de visibility
+                TextView component = findViewById(R.id.correct_text);
+                component.setVisibility(View.VISIBLE);
+                findViewById(R.id.calcul_text);
             } catch (ResultatFaux resultatFaux) {
-                incorrectText.setVisibility(visible);//on rend le message visible
+                // View.VISIBLE => la valeur qui va t afficher le truc
+                incorrectText.setVisibility(View.VISIBLE);//on rend le message visible
                 resultatFaux.printStackTrace();
             } catch (ResultatVide resultatVide) {
                 resultatVide.printStackTrace();
             }
-        });//DEMANDER AU PROOOOF !!!!!!!!!!!
+        });
     }
 
     //Ajoute game_menu à la page gameActivity
