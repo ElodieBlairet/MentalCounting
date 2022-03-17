@@ -28,6 +28,7 @@ public class GameActivity extends AppCompatActivity {
     private TextView calculText;
     private TextView incorrectText;
     private TextView correctText;
+    private CharSequence textCalcul;
     private GetteurOperation aff = new GetteurOperation();
 
     //Services externes :
@@ -44,55 +45,19 @@ public class GameActivity extends AppCompatActivity {
         incorrectText = findViewById(R.id.false_text);
         correctText = findViewById(R.id.correct_text);
 
+        //Récupération du texte de départ :
+        textCalcul = this.calculText.getText();//ce qui est déjà écrit
+
         //On récupère les valeurs du calcul pour les afficher :
-        ope.Aleatoire();//génére 2 int et un string
         calculFunction();
 
         //On vérifie la réponse de l'utilisateur :
         Button submitButton = findViewById(R.id.submit_game_button);
         submitButton.setOnClickListener(view -> submitFunction());
-    }
 
-    private void calculFunction(){
-        boolean calcul = ope.CorrectOpe();//L'opération est correcte : 2 int et un String
-        if (calcul) {//Récupération des valeurs de l'opération car elle est correcte
-            int premier = aff.GetPrem();
-            String operateur = aff.GetOpe();
-            int deuxieme = aff.GetDeux();
-            String text = getString(
-                    // le template
-                    R.string.operation_template,
-                    // les variables qui sont injectées
-                    premier,
-                    operateur,
-                    deuxieme
-            );
-            CharSequence text1 = this.calculText.getText();//ce qui est déjà écrit
-            this.calculText.setText(text1 + text);
-        }
-    }
-
-    private void submitFunction(){
-        try {
-            String value = text.getText().toString();
-            verif.Verification(aff, value);
-
-            // il faut récupérer le composant : c est pas l ID qui change de visibility
-            TextView component = findViewById(R.id.correct_text);
-            component.setVisibility(View.VISIBLE);
-            findViewById(R.id.calcul_text);
-        } catch (ResultatFaux resultatFaux) {
-            // View.VISIBLE => la valeur qui va t afficher le truc
-            incorrectText.setVisibility(View.VISIBLE);//on rend le message visible
-            resultatFaux.printStackTrace();
-            //Affichage du message d'erreur avec le bon résultat:
-            CharSequence textF = this.incorrectText.getText();//Message : "Rate"
-            int reponse = verif.getCorrectRes();//reponse correcte
-            String rep = Integer.toString(reponse);
-            this.incorrectText.setText(textF+rep);//Affichage
-        } catch (ResultatVide resultatVide) {
-            resultatVide.printStackTrace();
-        }
+        //Boutton pour une nouvelle operation :
+        Button newButton = findViewById(R.id.new_button);
+        newButton.setOnClickListener(view -> nouvelleOperation());
     }
 
     //Ajoute game_menu à la page gameActivity
@@ -118,6 +83,55 @@ public class GameActivity extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void calculFunction(){
+        ope.Aleatoire();//génére 2 int et un string
+        boolean calcul = ope.CorrectOpe();//L'opération est correcte : 2 int et un String
+        if (calcul) {//Récupération des valeurs de l'opération car elle est correcte
+            int premier = aff.GetPrem();
+            String operateur = aff.GetOpe();
+            int deuxieme = aff.GetDeux();
+            String text = getString(
+                    // le template
+                    R.string.operation_template,
+                    // les variables qui sont injectées
+                    premier,
+                    operateur,
+                    deuxieme
+            );
+            this.calculText.setText(textCalcul + text);
+        }
+    }
+
+    private void submitFunction(){
+        try {
+            String value = text.getText().toString();
+            verif.Verification(aff, value);
+
+            // il faut récupérer le composant : c est pas l ID qui change de visibility
+            correctText.setVisibility(View.VISIBLE);
+            findViewById(R.id.calcul_text);
+        } catch (ResultatFaux resultatFaux) {
+            // View.VISIBLE => la valeur qui va t afficher le truc
+            incorrectText.setVisibility(View.VISIBLE);//on rend le message visible
+            resultatFaux.printStackTrace();
+            //Affichage du message d'erreur avec le bon résultat:
+            CharSequence textF = this.incorrectText.getText();//Message : "Rate"
+            int reponse = verif.getCorrectRes();//reponse correcte
+            String rep = Integer.toString(reponse);
+            this.incorrectText.setText(textF+rep);//Affichage
+        } catch (ResultatVide resultatVide) {
+            resultatVide.printStackTrace();
+        }
+    }
+
+    private void nouvelleOperation(){
+        //On efface les messages précédents :
+        correctText.setVisibility(View.INVISIBLE);
+        incorrectText.setVisibility(View.INVISIBLE);
+        //On change d'operation :
+        calculFunction();
     }
 
     //Getteur pour affichage

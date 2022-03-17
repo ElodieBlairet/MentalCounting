@@ -14,12 +14,13 @@
     <string name="previous_button">Previous</string>
 
     <!-- Activity game -->
-    <string name="bravo">Congrate</string>
     <string name="calcul">Calculation : </string>
+    <string name="operation_template" translatable="false">%1$d %2$s %3$d</string>
     <string name="reponse">Answer : </string>
+    <string name="bravo">Congrate</string>
     <string name="rate">Failure : </string>
     <string name="valider">Validate</string>
-    <string name="operation_template" translatable="false">%1$d %2$s %3$d</string>
+    <string name="new_operation">New operation</string>
 
     <!-- Activity result -->
     <string name="dernier_calcul">Last calculation : 5+3=8</string>
