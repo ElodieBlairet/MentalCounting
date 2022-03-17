@@ -4,8 +4,8 @@ import java.util.Random;
 
 public class OperationService {
     //Attributs
-    int premier = 0;
-    int deuxieme = 0;
+    int premier;
+    int deuxieme;
     String operateur = "";
 
     //Fonction pour les aléatoires
@@ -38,7 +38,11 @@ public class OperationService {
     }
 
     public boolean CorrectOpe(){
-        return true;
+        //if (operateur.equals(""))
+            return true;
+        //else
+            //Aleatoire();
+            //return false;
     }
 
     //Accesseurs

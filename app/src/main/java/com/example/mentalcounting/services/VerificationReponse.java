@@ -39,10 +39,14 @@ public class VerificationReponse {
         }
         else//l'utilisateur a faux
         {
-            if (resUtilString == "")//resultat vide
+            if (resUtilString.equals(""))//resultat vide
                 throw new ResultatVide("Entrer un resultat");// (ou mettre le bouton valider en enable)
             else//resultat incorrect
                 throw new ResultatFaux("Raté : XX");// XX = res
         }
+    }
+
+    public int getCorrectRes() {
+        return correctRes;
     }
 }

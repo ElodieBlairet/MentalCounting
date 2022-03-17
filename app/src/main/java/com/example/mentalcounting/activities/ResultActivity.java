@@ -32,11 +32,8 @@ public class ResultActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
-        switch (id) {
-            case R.id.previous_button_menu:
-                finish();
-                break;
-        }
+        if (id == R.id.previous_button_menu)
+            finish();
         return super.onOptionsItemSelected(item);
     }
 }

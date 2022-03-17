@@ -24,14 +24,11 @@ import com.example.mentalcounting.R;
 
 public class GameActivity extends AppCompatActivity {
 
-    EditText text;//Ce que l'utilisateur entre
-    TextView calculText;
-    TextView incorrectText;
-    TextView correctText;
-    private int premier = 0;
-    private String operateur = null;
-    private int deuxieme = 0;
-    GetteurOperation aff = new GetteurOperation();
+    private EditText text;//Ce que l'utilisateur entre
+    private TextView calculText;
+    private TextView incorrectText;
+    private TextView correctText;
+    private GetteurOperation aff = new GetteurOperation();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,12 +42,22 @@ public class GameActivity extends AppCompatActivity {
 
         //On récupère les valeurs du calcul pour les afficher :
         OperationService ope = new OperationService();//Service de création d'une opération
+        ope.Aleatoire();//génére 2 int et un string
         boolean calcul = ope.CorrectOpe();//L'opération est correcte : 2 int et un String
         if (calcul) {//Récupération des valeurs de l'opération car elle est correcte
-
-            premier = aff.GetPrem();
-            operateur = aff.GetOpe();
-            deuxieme = aff.GetDeux();
+            int premier = aff.GetPrem();
+            String operateur = aff.GetOpe();
+            int deuxieme = aff.GetDeux();
+            String text = getString(
+                    // le template
+                    R.string.operation_template,
+                    // les variables qui sont injectées
+                    premier,
+                    operateur,
+                    deuxieme
+            );
+            CharSequence text1 = this.calculText.getText();//ce qui est déjà écrit
+            this.calculText.setText(text1 + text);
         }
 
         //On vérifie la réponse de l'utilisateur :
@@ -69,6 +76,11 @@ public class GameActivity extends AppCompatActivity {
                 // View.VISIBLE => la valeur qui va t afficher le truc
                 incorrectText.setVisibility(View.VISIBLE);//on rend le message visible
                 resultatFaux.printStackTrace();
+                //Affichage du message d'erreur avec le bon résultat:
+                CharSequence textF = this.incorrectText.getText();//Message : "Rate"
+                int reponse = verif.getCorrectRes();//reponse correcte
+                String rep = Integer.toString(reponse);
+                this.incorrectText.setText(textF+rep);//Affichage
             } catch (ResultatVide resultatVide) {
                 resultatVide.printStackTrace();
             }

@@ -15,9 +15,9 @@
 
     <!-- Activity game -->
     <string name="bravo">Bravo</string>
-    <string name="calcul">calcul : 6+3</string>
+    <string name="calcul">calcul : </string>
     <string name="reponse">reponse : </string>
-    <string name="rate">Echec : 9</string>
+    <string name="rate">Echec : </string>
     <string name="valider">Valider</string>
 
     <!-- Activity result -->
