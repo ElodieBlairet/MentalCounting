@@ -30,6 +30,10 @@ public class GameActivity extends AppCompatActivity {
     private TextView correctText;
     private GetteurOperation aff = new GetteurOperation();
 
+    //Services externes :
+    OperationService ope = new OperationService();//Service de création d'une opération
+    VerificationReponse verif = new VerificationReponse();//Service de vérification d'un calcul
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,8 +45,15 @@ public class GameActivity extends AppCompatActivity {
         correctText = findViewById(R.id.correct_text);
 
         //On récupère les valeurs du calcul pour les afficher :
-        OperationService ope = new OperationService();//Service de création d'une opération
         ope.Aleatoire();//génére 2 int et un string
+        calculFunction();
+
+        //On vérifie la réponse de l'utilisateur :
+        Button submitButton = findViewById(R.id.submit_game_button);
+        submitButton.setOnClickListener(view -> submitFunction());
+    }
+
+    private void calculFunction(){
         boolean calcul = ope.CorrectOpe();//L'opération est correcte : 2 int et un String
         if (calcul) {//Récupération des valeurs de l'opération car elle est correcte
             int premier = aff.GetPrem();
@@ -59,32 +70,29 @@ public class GameActivity extends AppCompatActivity {
             CharSequence text1 = this.calculText.getText();//ce qui est déjà écrit
             this.calculText.setText(text1 + text);
         }
+    }
 
-        //On vérifie la réponse de l'utilisateur :
-        VerificationReponse verif = new VerificationReponse();
-        Button submitButton = findViewById(R.id.submit_game_button);
-        submitButton.setOnClickListener(view -> {
-            try {
-                String value = text.getText().toString();
-                verif.Verification(aff, value);
+    private void submitFunction(){
+        try {
+            String value = text.getText().toString();
+            verif.Verification(aff, value);
 
-                // il faut récupérer le composant : c est pas l ID qui change de visibility
-                TextView component = findViewById(R.id.correct_text);
-                component.setVisibility(View.VISIBLE);
-                findViewById(R.id.calcul_text);
-            } catch (ResultatFaux resultatFaux) {
-                // View.VISIBLE => la valeur qui va t afficher le truc
-                incorrectText.setVisibility(View.VISIBLE);//on rend le message visible
-                resultatFaux.printStackTrace();
-                //Affichage du message d'erreur avec le bon résultat:
-                CharSequence textF = this.incorrectText.getText();//Message : "Rate"
-                int reponse = verif.getCorrectRes();//reponse correcte
-                String rep = Integer.toString(reponse);
-                this.incorrectText.setText(textF+rep);//Affichage
-            } catch (ResultatVide resultatVide) {
-                resultatVide.printStackTrace();
-            }
-        });
+            // il faut récupérer le composant : c est pas l ID qui change de visibility
+            TextView component = findViewById(R.id.correct_text);
+            component.setVisibility(View.VISIBLE);
+            findViewById(R.id.calcul_text);
+        } catch (ResultatFaux resultatFaux) {
+            // View.VISIBLE => la valeur qui va t afficher le truc
+            incorrectText.setVisibility(View.VISIBLE);//on rend le message visible
+            resultatFaux.printStackTrace();
+            //Affichage du message d'erreur avec le bon résultat:
+            CharSequence textF = this.incorrectText.getText();//Message : "Rate"
+            int reponse = verif.getCorrectRes();//reponse correcte
+            String rep = Integer.toString(reponse);
+            this.incorrectText.setText(textF+rep);//Affichage
+        } catch (ResultatVide resultatVide) {
+            resultatVide.printStackTrace();
+        }
     }
 
     //Ajoute game_menu à la page gameActivity
