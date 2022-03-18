@@ -4,10 +4,10 @@ import java.util.Random;
 
 public class OperationService {
     //Attributs
-    int premier;
-    int deuxieme;
-    int res;
-    String operateur = "";
+    private int premier;
+    private int deuxieme;
+    private int res;
+    private String operateur = "";
 
     //Fonction pour les aléatoires
     public int Aleatoire(){

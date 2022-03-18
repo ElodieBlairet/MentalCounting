@@ -32,7 +32,6 @@ public class GameActivity extends AppCompatActivity {
     private CharSequence textF;
 
     //Services externes :
-    private GetteurOperation aff = new GetteurOperation();
     private OperationService ope = new OperationService();//Service de création d'une opération
     private VerificationReponse verif = new VerificationReponse();//Service de vérification d'un calcul
 

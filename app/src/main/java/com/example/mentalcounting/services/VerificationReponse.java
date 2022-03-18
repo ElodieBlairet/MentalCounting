@@ -5,7 +5,7 @@ import com.example.mentalcounting.models.ResultatVide;
 
 public class VerificationReponse {
 
-    int correctRes;//vrai résultat
+    private int correctRes;//vrai résultat
 
     public void Verification(int resUtilInt, int res) throws ResultatFaux, ResultatVide {
         correctRes=res;
