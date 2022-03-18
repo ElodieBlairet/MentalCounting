@@ -8,38 +8,14 @@ public class VerificationReponse {
 
     int correctRes;//vrai résultat
 
-    public void Operation(GetteurOperation aff){
-
-        int premier = aff.GetPrem();
-        int second = aff.GetDeux();
-        String operateur = aff.GetOpe();
-
-        switch (operateur){
-            case "+":
-                correctRes = premier + second;
-                break;
-            case "-":
-                correctRes = premier - second;
-                break;
-            case "*":
-                correctRes = premier * second;
-                break;
-            //default:
-                //Erreur déjà vérifiée dans OperationService.java
-        }
-    }
-
-    public void Verification(GetteurOperation operation, String resUtilString) throws ResultatFaux, ResultatVide {
-        int resUtilInt = Integer.parseInt(resUtilString);//Pour le if
-
-        Operation(operation);//Fait le vrai calcul
-
+    public void Verification(GetteurOperation operation, int resUtilInt, int res) throws ResultatFaux, ResultatVide {
+        correctRes=res;
         if (correctRes == resUtilInt) {//l'utilisateur a bon
             return;
         }
         else//l'utilisateur a faux
         {
-            if (resUtilString.equals(""))//resultat vide
+            if (resUtilInt == -21)//resultat vide car impossible d'aller à + de -20 (0-20 max)
                 throw new ResultatVide("Entrer un resultat");// (ou mettre le bouton valider en enable)
             else//resultat incorrect
                 throw new ResultatFaux("Raté : XX");// XX = res

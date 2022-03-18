@@ -2,7 +2,6 @@ package com.example.mentalcounting.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -24,16 +23,18 @@ import com.example.mentalcounting.R;
 
 public class GameActivity extends AppCompatActivity {
 
+    private int res;//vrai résultat
     private EditText text;//Ce que l'utilisateur entre
-    private TextView calculText;
-    private TextView incorrectText;
-    private TextView correctText;
+    private TextView calculText;//"calcul :"
+    private TextView incorrectText;//"rate: XX"
+    private TextView correctText;//"bravo"
     private CharSequence textCalcul;
-    private GetteurOperation aff = new GetteurOperation();
+    private CharSequence textF;
 
     //Services externes :
-    OperationService ope = new OperationService();//Service de création d'une opération
-    VerificationReponse verif = new VerificationReponse();//Service de vérification d'un calcul
+    private GetteurOperation aff = new GetteurOperation();
+    private OperationService ope = new OperationService();//Service de création d'une opération
+    private VerificationReponse verif = new VerificationReponse();//Service de vérification d'un calcul
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +55,7 @@ public class GameActivity extends AppCompatActivity {
         //On vérifie la réponse de l'utilisateur :
         Button submitButton = findViewById(R.id.submit_game_button);
         submitButton.setOnClickListener(view -> submitFunction());
+        textF = this.incorrectText.getText();//Message : "Rate"
 
         //Boutton pour une nouvelle operation :
         Button newButton = findViewById(R.id.new_button);
@@ -86,13 +88,14 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void calculFunction(){
-        ope.Aleatoire();//génére 2 int et un string
+        res = ope.Aleatoire();//génére 2 int et un string
+
         boolean calcul = ope.CorrectOpe();//L'opération est correcte : 2 int et un String
         if (calcul) {//Récupération des valeurs de l'opération car elle est correcte
-            int premier = aff.GetPrem();
-            String operateur = aff.GetOpe();
-            int deuxieme = aff.GetDeux();
-            String text = getString(
+            int premier = ope.getPremier();
+            String operateur = ope.getOperateur();
+            int deuxieme = ope.getDeuxieme();
+            String affichage = getString(
                     // le template
                     R.string.operation_template,
                     // les variables qui sont injectées
@@ -100,14 +103,17 @@ public class GameActivity extends AppCompatActivity {
                     operateur,
                     deuxieme
             );
-            this.calculText.setText(textCalcul + text);
+            this.calculText.setText(textCalcul + affichage);
         }
     }
 
     private void submitFunction(){
         try {
+            int valeur;
             String value = text.getText().toString();
-            verif.Verification(aff, value);
+            valeur = Integer.parseInt(value);
+
+            verif.Verification(aff, valeur,res);
 
             // il faut récupérer le composant : c est pas l ID qui change de visibility
             correctText.setVisibility(View.VISIBLE);
@@ -117,7 +123,7 @@ public class GameActivity extends AppCompatActivity {
             incorrectText.setVisibility(View.VISIBLE);//on rend le message visible
             resultatFaux.printStackTrace();
             //Affichage du message d'erreur avec le bon résultat:
-            CharSequence textF = this.incorrectText.getText();//Message : "Rate"
+
             int reponse = verif.getCorrectRes();//reponse correcte
             String rep = Integer.toString(reponse);
             this.incorrectText.setText(textF+rep);//Affichage
@@ -132,19 +138,5 @@ public class GameActivity extends AppCompatActivity {
         incorrectText.setVisibility(View.INVISIBLE);
         //On change d'operation :
         calculFunction();
-    }
-
-    //Getteur pour affichage
-    public EditText getText() {
-        return text;
-    }
-    public TextView getCalculText() {
-        return calculText;
-    }
-    public TextView getIncorrectText() {
-        return incorrectText;
-    }
-    public TextView getCorrectText() {
-        return correctText;
     }
 }
