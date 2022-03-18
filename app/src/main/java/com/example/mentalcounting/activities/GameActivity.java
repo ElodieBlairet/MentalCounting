@@ -16,8 +16,6 @@ import com.example.mentalcounting.models.ResultatFaux;
 import com.example.mentalcounting.models.ResultatVide;
 import com.example.mentalcounting.services.OperationService;
 import com.example.mentalcounting.services.VerificationReponse;
-import com.example.mentalcounting.models.GetteurOperation;
-
 
 import com.example.mentalcounting.R;
 
@@ -129,6 +127,8 @@ public class GameActivity extends AppCompatActivity {
         } catch (ResultatVide resultatVide) {
             resultatVide.printStackTrace();
         }
+        Button submitButton = findViewById(R.id.submit_game_button);
+        submitButton.setVisibility(View.INVISIBLE);
     }
 
     private void nouvelleOperation(){
@@ -137,5 +137,8 @@ public class GameActivity extends AppCompatActivity {
         incorrectText.setVisibility(View.INVISIBLE);
         //On change d'operation :
         calculFunction();
+        //On remet le bouton Valider:
+        Button submitButton = findViewById(R.id.submit_game_button);
+        submitButton.setVisibility(View.VISIBLE);
     }
 }
