@@ -2,13 +2,12 @@ package com.example.mentalcounting.services;
 
 import com.example.mentalcounting.models.ResultatFaux;
 import com.example.mentalcounting.models.ResultatVide;
-import com.example.mentalcounting.models.GetteurOperation;
 
 public class VerificationReponse {
 
     int correctRes;//vrai résultat
 
-    public void Verification(GetteurOperation operation, int resUtilInt, int res) throws ResultatFaux, ResultatVide {
+    public void Verification(int resUtilInt, int res) throws ResultatFaux, ResultatVide {
         correctRes=res;
         if (correctRes == resUtilInt) {//l'utilisateur a bon
             return;

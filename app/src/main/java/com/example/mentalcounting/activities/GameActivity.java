@@ -113,7 +113,7 @@ public class GameActivity extends AppCompatActivity {
             String value = text.getText().toString();
             valeur = Integer.parseInt(value);
 
-            verif.Verification(aff, valeur,res);
+            verif.Verification(valeur,res);
 
             // il faut récupérer le composant : c est pas l ID qui change de visibility
             correctText.setVisibility(View.VISIBLE);
